@@ -95,7 +95,6 @@ COPY --from=build --chown=multipaper:multipaper /artifacts/eula.txt /opt/multipa
 COPY --from=build --chown=multipaper:multipaper /artifacts/multipaper.jar /opt/multipaper/multipaper.jar
 
 ENTRYPOINT [ "/opt/multipaper/entry.sh", "/opt/multipaper/multipaper.jar" ]
-CMD [ "--max-players=30" ]
 
 EXPOSE 25565/tcp
 VOLUME [ "/app" ]
