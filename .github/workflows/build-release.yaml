@@ -29,7 +29,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: amd64,arm64,arm
+          platforms: amd64,arm64
 
       - name: Set up Docker Buildx
         id: buildx
@@ -62,7 +62,7 @@ jobs:
           push: false
           load: false
           target: base
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           cache-from: |
             type=gha,scope=release-base
           cache-to: |
@@ -78,7 +78,7 @@ jobs:
           target: master
           build-args: |
             RELEASE_URL=${{ steps.get_release.outputs.MULTIPAPER_MASTER_URL }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           cache-from: |
             type=gha,scope=release-master-${{ inputs.version }}
             type=gha,scope=release-base
@@ -95,7 +95,7 @@ jobs:
           target: server
           build-args: |
             RELEASE_URL=${{ steps.get_release.outputs.MULTIPAPER_URL }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64
           cache-from: |
             type=gha,scope=release-server-${{ inputs.version }}
             type=gha,scope=release-base
