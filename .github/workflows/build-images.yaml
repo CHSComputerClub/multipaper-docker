@@ -60,7 +60,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: noevidenz/multipaper-master:edge
+          tags: chscompclub/multipaper-master:edge
           target: master
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           cache-from: |
@@ -75,7 +75,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: noevidenz/multipaper:edge
+          tags: chscompclub/multipaper:edge
           target: server
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           cache-from: |
