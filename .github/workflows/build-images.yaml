@@ -1,8 +1,8 @@
 name: Build Image (edge)
 
 on:
-  schedule:
-    - cron: '0 14 * * *' # Midnight AEST
+#  schedule:
+#    - cron: '0 14 * * *' # Midnight AEST
   workflow_dispatch:
 
 jobs:

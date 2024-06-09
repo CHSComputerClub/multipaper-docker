@@ -27,6 +27,15 @@ FROM base as server
 # Create an entry script based on akiicat/MultiPaper-Container
 COPY --chown=multipaper:multipaper --chmod=744 <<-"EOT" /opt/multipaper/entry.sh
 #!/usr/bin/env bash
+# Grab files and folders seperated by a semicolon from the environment variable $MASTERFILES and put them into /app
+if [[ -n "$MASTERFILES" ]]; then
+    echo "Copying master files..."
+    IFS=';' read -ra FILES <<< "$MASTERFILES"
+    for FILE in "${FILES[@]}"; do
+        cp -r "/masterData/$FILE" "/app"
+    done
+fi
+
 # If the EULA environment variable is true, accept it
 if [[ -n "$EULA" ]]; then
     echo "Accepting the EULA..."
