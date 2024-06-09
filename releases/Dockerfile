@@ -34,13 +34,12 @@ if [[ -n "$MASTERFILES" ]]; then
     for FILE in "${FILES[@]}"; do
         # split the file path into the directory and the file name
         DIR=$(dirname "$FILE")
-        FILENAME=$(basename "$FILE")
         # if dir is just ., then run base cp, otherwise create the directory and copy the file with rel path
         if [[ "$DIR" == "." ]]; then
-            cp -r "/masterData/$FILENAME" "/app"
+            cp -r "/masterData/$FILE" "/app"
         else
             mkdir -p "/app/$DIR"
-            cp -r "/masterData/$FILENAME" "/app/$DIR"
+            cp -r "/masterData/$FILE" "/app/$DIR"
         fi
     done
 fi
