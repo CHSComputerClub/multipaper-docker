@@ -32,7 +32,16 @@ if [[ -n "$MASTERFILES" ]]; then
     echo "Copying master files..."
     IFS=';' read -ra FILES <<< "$MASTERFILES"
     for FILE in "${FILES[@]}"; do
-        cp -r "/masterData/$FILE" "/app"
+        # split the file path into the directory and the file name
+        DIR=$(dirname "$FILE")
+        FILENAME=$(basename "$FILE")
+        # if dir is just ., then run base cp, otherwise create the directory and copy the file with rel path
+        if [[ "$DIR" == "." ]]; then
+            cp -r "/masterData/$FILENAME" "/app"
+        else
+            mkdir -p "/app/$DIR"
+            cp -r "/masterData/$FILENAME" "/app/$DIR"
+        fi
     done
 fi
 
